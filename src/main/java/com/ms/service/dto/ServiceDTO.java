@@ -28,9 +28,9 @@ public class ServiceDTO implements Serializable {
     @Email
     private String serviceEmail; // email
 
-    private String serviceStatus; // status
-    private boolean serviceDescription; // descrição
-    private float servicePrice; // preço
+    private boolean serviceStatus; // status
+    private String serviceDescription; // descrição
+    private double servicePrice; // preço
     private int serviceRuntime; // tempo de execução
     private int serviceTerm; // prazo
     private String created;

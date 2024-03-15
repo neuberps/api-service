@@ -52,8 +52,8 @@ public class ServiceServices {
 
             serviceModel.setServiceName(serviceDTO.getServiceName());
             serviceModel.setServiceEmail(serviceDTO.getServiceEmail());
-            serviceModel.setServiceStatus(serviceDTO.getServiceStatus());
-            serviceModel.setServiceDescription(serviceDTO.isServiceDescription());
+            serviceModel.setServiceStatus(serviceDTO.isServiceStatus());
+            serviceModel.setServiceDescription(serviceDTO.getServiceDescription());
             serviceModel.setServicePrice(serviceDTO.getServicePrice());
             serviceModel.setServiceRuntime(serviceDTO.getServiceRuntime());
             serviceModel.setServiceTerm(serviceDTO.getServiceTerm());

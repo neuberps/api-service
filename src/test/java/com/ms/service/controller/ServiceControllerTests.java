@@ -41,7 +41,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     public void testCreateService() throws Exception{
         log.info("testCreateService");
         // CONSTRUTOR DE SERVICEDTO = id, nome, email, status, descricao, preco, tempo de execução, prazo
-        ServiceDTO serviceDTO = new ServiceDTO(null, "empresa1", "empresa1@email.com");
+        ServiceDTO serviceDTO = new ServiceDTO(null, "empresa1", "empresa1@email.com", false, "descrição empresa1 aqui...", 2.0, 1, 1, null, null, null);
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/api/services")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -90,7 +90,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
         log.info("testUpdateService");
         this.mockMvc.perform(MockMvcRequestBuilders.put("/api/services/" + id)
                 // CONSTRUTOR DE SERVICEDTO = id, nome, email, status, descricao, preco, tempo de execução, prazo
-                .content(asJsonString(new ServiceDTO(id, "telecom2", "empresa2@email.com")))
+                .content(asJsonString(new ServiceDTO(id, "telecom2", "empresa2@email.com", true, "descrição aqui...", 1.2, 1, 1, null, null, null)))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
