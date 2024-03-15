@@ -61,9 +61,9 @@ public class ServiceController {
 
     // testFindByName(),
     @GetMapping(value = "/getName/{name}")
-    public ResponseEntity<ServiceDTO> findByName(@PathVariable String name){
+    public ResponseEntity<ServiceDTO> findByServiceName(@PathVariable String name){
         try {
-            ServiceDTO serviceDTO = serviceServices.findByName(name);
+            ServiceDTO serviceDTO = serviceServices.findByServiceName(name);
             if (serviceDTO != null) {
                 return ResponseEntity.ok(serviceDTO);
             } else {

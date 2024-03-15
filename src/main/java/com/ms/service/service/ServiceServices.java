@@ -39,8 +39,8 @@ public class ServiceServices {
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with ID: " + id));
     }
 
-    public ServiceDTO findByName(String name) throws ServiceException {
-        return serviceRepository.findByName(name)
+    public ServiceDTO findByServiceName(String name) throws ServiceException {
+        return serviceRepository.findByServiceName(name)
                 .map(ServiceDTO::new)
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with NAME: " + name));
     }
