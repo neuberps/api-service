@@ -27,7 +27,7 @@ public class ServiceModel implements Serializable {
     private int serviceTerm; // prazo
     private String created;
     private String updated;
-    private String registryService;
+    private String registryUser;
 
     public ServiceModel (ServiceDTO serviceDTO){
         BeanUtils.copyProperties(serviceDTO, this);

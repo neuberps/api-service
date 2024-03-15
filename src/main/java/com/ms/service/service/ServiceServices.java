@@ -27,7 +27,7 @@ public class ServiceServices {
 
     public ServiceDTO create(ServiceDTO serviceDTO) throws ServiceException {
         ServiceModel serviceModel = new ServiceModel(serviceDTO);
-        serviceModel.setRegistryService(serviceDTO.getRegistryService());
+        serviceModel.setRegistryUser(serviceDTO.getRegistryUser());
         serviceModel.setCreated(LocalDateTime.now().toString());
         serviceRepository.save(serviceModel);
         return new ServiceDTO(serviceModel);
@@ -57,7 +57,7 @@ public class ServiceServices {
             serviceModel.setServicePrice(serviceDTO.getServicePrice());
             serviceModel.setServiceRuntime(serviceDTO.getServiceRuntime());
             serviceModel.setServiceTerm(serviceDTO.getServiceTerm());
-            serviceModel.setRegistryService(serviceDTO.getRegistryService());
+            serviceModel.setRegistryUser(serviceDTO.getRegistryUser());
             serviceModel.setUpdated(LocalDateTime.now().toString());
 
             serviceRepository.save(serviceModel);

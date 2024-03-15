@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @SpringBootTest
-@ActiveProfiles("test")
+@ActiveProfiles("tests")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ServiceControllerTests extends ServiceApplicationTests {
 
@@ -32,16 +32,15 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     @BeforeEach
     public void setUp(){
         this.mockMvc = MockMvcBuilders.standaloneSetup(serviceController).build();
-        this.id = "65f346c11ac3d257aed346f9";
+        this.id = "65f4826c5488840d27e9868e";
         this.name = "empresa1";
     }
 
     @Test
-    @Order(0)
+    @Order(1)
     public void testCreateService() throws Exception{
         log.info("testCreateService");
-        // CONSTRUTOR DE SERVICEDTO = id, nome, email, status, descricao, preco, tempo de execução, prazo
-        ServiceDTO serviceDTO = new ServiceDTO(null, "empresa1", "empresa1@email.com", false, "descrição empresa1 aqui...", 2.0, 1, 1, null, null, null);
+        ServiceDTO serviceDTO = new ServiceDTO(id, "empresa1", "empresa1@email.com", false, "descrição empresa1 aqui...", 2.0, 1, 1, null, null, null);
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/api/services")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -53,7 +52,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     }
 
     @Test
-    @Order(1)
+    @Order(2)
     public void testFindAllServices() throws Exception{
         log.info("testFindAllServices");
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services"))
@@ -63,10 +62,10 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void testFindById() throws Exception{
         log.info("testFindById");
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getId/" + id))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getServiceId/" + id))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
@@ -74,10 +73,10 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     }
 
     @Test
-    @Order(3)
-    public void testFindByName() throws Exception{
-        log.info("testFindByName");
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getName/" + name))
+    @Order(4)
+    public void testFindByServiceName() throws Exception{
+        log.info("testFindByServiceName");
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getServiceName/" + name))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
@@ -85,7 +84,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     public void testUpdateService() throws Exception{
         log.info("testUpdateService");
         this.mockMvc.perform(MockMvcRequestBuilders.put("/api/services/" + id)
@@ -98,7 +97,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     public void testDeleteService() throws Exception{
         log.info("testDeleteService");
         this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/clients/" + id)
