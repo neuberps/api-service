@@ -1,6 +1,5 @@
 package com.ms.service.model;
 
-
 import com.ms.service.dto.ServiceDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +14,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Builder
 @Document(collection = "services")
-public class Service implements Serializable {
+public class ServiceModel implements Serializable {
 
     @Id
     private String serviceID; // id
@@ -26,11 +25,14 @@ public class Service implements Serializable {
     private float servicePrice; // preço
     private int serviceRuntime; // tempo de execução
     private int serviceTerm; // prazo
+    private String created;
+    private String updated;
+    private String registryService;
 
-    public Service (ServiceDTO serviceDTO){
+    public ServiceModel (ServiceDTO serviceDTO){
         BeanUtils.copyProperties(serviceDTO, this);
     }
-    public Service(){
+    public ServiceModel(){
         super();
     }
 }
