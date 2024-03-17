@@ -39,8 +39,8 @@ public class ServiceServices {
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with ID: " + id));
     }
 
-    public ServiceDTO findByServiceName(String name) throws ServiceException {
-        return serviceRepository.findByServiceName(name)
+    public ServiceDTO findByName(String name) throws ServiceException {
+        return serviceRepository.findByName(name)
                 .map(ServiceDTO::new)
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with NAME: " + name));
     }
@@ -50,13 +50,13 @@ public class ServiceServices {
         if (optionalServiceModel.isPresent()){
             ServiceModel serviceModel = optionalServiceModel.get();
 
-            serviceModel.setServiceName(serviceDTO.getServiceName());
-            serviceModel.setServiceEmail(serviceDTO.getServiceEmail());
-            serviceModel.setServiceStatus(serviceDTO.isServiceStatus());
-            serviceModel.setServiceDescription(serviceDTO.getServiceDescription());
-            serviceModel.setServicePrice(serviceDTO.getServicePrice());
-            serviceModel.setServiceRuntime(serviceDTO.getServiceRuntime());
-            serviceModel.setServiceTerm(serviceDTO.getServiceTerm());
+            serviceModel.setName(serviceDTO.getName());
+            serviceModel.setEmail(serviceDTO.getEmail());
+            serviceModel.setStatus(serviceDTO.isStatus());
+            serviceModel.setDescription(serviceDTO.getDescription());
+            serviceModel.setPrice(serviceDTO.getPrice());
+            serviceModel.setRuntime(serviceDTO.getRuntime());
+            serviceModel.setTerm(serviceDTO.getTerm());
             serviceModel.setRegistryUser(serviceDTO.getRegistryUser());
             serviceModel.setUpdated(LocalDateTime.now().toString());
 

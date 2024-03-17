@@ -12,10 +12,10 @@ public class ValidationException {
     @ExceptionHandler
     public ResponseEntity treatError400(MethodArgumentNotValidException e) {
         var error = e.getFieldErrors();
-        return ResponseEntity.badRequest().body(error.stream().map(ValidationExceptionDTO::new).toList());
+        return ResponseEntity.badRequest().body(error.stream().map(ValidationErrorDTO::new).toList());
     }
-    private record ValidationExceptionDTO(String field, String message){
-        public ValidationExceptionDTO(FieldError error){
+    private record ValidationErrorDTO(String field, String message){
+        public ValidationErrorDTO(FieldError error){
             this(error.getField(), error.getDefaultMessage());
         }
     }

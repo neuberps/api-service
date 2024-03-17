@@ -18,14 +18,14 @@ import java.math.BigDecimal;
 public class ServiceModel implements Serializable {
 
     @Id
-    private String serviceID; // id
-    private String serviceName; // nome
-    private String serviceEmail; // email
-    private boolean serviceStatus; // status
-    private String serviceDescription; // descrição
-    private BigDecimal servicePrice; // preço
-    private int serviceRuntime; // tempo de execução
-    private int serviceTerm; // prazo
+    private String id;
+    private String name;
+    private String email;
+    private boolean status;
+    private String description;
+    private BigDecimal price;
+    private int runtime;
+    private int term;
     private String created;
     private String updated;
     private String registryUser;

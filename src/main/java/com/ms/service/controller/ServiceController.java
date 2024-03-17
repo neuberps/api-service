@@ -25,7 +25,7 @@ public class ServiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ServiceDTO>> findAllServices(){
+    public ResponseEntity<List<ServiceDTO>> findAll(){
         try{
             List<ServiceDTO> serviceDTOS = serviceServices.findAll();
             if (serviceDTOS.isEmpty()){
@@ -39,7 +39,7 @@ public class ServiceController {
 
     @Transactional
     @PostMapping
-    public ResponseEntity<ServiceDTO> createService(@RequestBody @Valid ServiceDTO serviceDTO){
+    public ResponseEntity<ServiceDTO> create(@RequestBody @Valid ServiceDTO serviceDTO){
         try {
             ServiceDTO createdService = serviceServices.create(serviceDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdService);
@@ -48,7 +48,6 @@ public class ServiceController {
         }
     }
 
-    // testFindById(),
     @GetMapping(value = "/getId/{id}")
     public ResponseEntity<ServiceDTO> findById(@PathVariable String id){
         try {
@@ -61,9 +60,9 @@ public class ServiceController {
 
     // testFindByName(),
     @GetMapping(value = "/getName/{name}")
-    public ResponseEntity<ServiceDTO> findByServiceName(@PathVariable String name){
+    public ResponseEntity<ServiceDTO> findByName(@PathVariable String name){
         try {
-            ServiceDTO serviceDTO = serviceServices.findByServiceName(name);
+            ServiceDTO serviceDTO = serviceServices.findByName(name);
             if (serviceDTO != null) {
                 return ResponseEntity.ok(serviceDTO);
             } else {
@@ -77,7 +76,7 @@ public class ServiceController {
     // testUpdateService(),
     @Transactional
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ServiceDTO> updateService(@PathVariable String id, @Valid @RequestBody ServiceDTO serviceDTO){
+    public ResponseEntity<ServiceDTO> update(@PathVariable String id, @Valid @RequestBody ServiceDTO serviceDTO){
         try{
             ServiceDTO updatedService = serviceServices.update(id, serviceDTO);
             return ResponseEntity.ok(updatedService);

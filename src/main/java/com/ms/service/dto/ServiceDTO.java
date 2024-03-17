@@ -1,5 +1,6 @@
 package com.ms.service.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ms.service.model.ServiceModel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -16,28 +17,26 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class ServiceDTO implements Serializable {
 
-    private String serviceID; // id
+    private String id;
     @NotBlank
-    private String serviceName; // nome
+    private String name;
 
     @NotBlank
     @Email
-    private String serviceEmail; // email
-
-    private boolean serviceStatus; // status
-    private String serviceDescription; // descrição
-    private BigDecimal servicePrice; // preço
-    private int serviceRuntime; // tempo de execução
-    private int serviceTerm; // prazo
+    private String email;
+    private boolean status;
+    private String description;
+    private BigDecimal price;
+    private int runtime;
+    private int term;
     private String created;
     private String updated;
+
     @NotBlank
     private String registryUser;
 
     public ServiceDTO (ServiceModel serviceModel){
         BeanUtils.copyProperties(serviceModel, this);
     }
-
-
 
 }

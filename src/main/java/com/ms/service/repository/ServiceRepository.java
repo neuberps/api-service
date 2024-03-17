@@ -8,5 +8,5 @@ import java.util.Optional;
 
 @Repository
 public interface ServiceRepository extends MongoRepository<ServiceModel, String> {
-    Optional<ServiceModel> findByServiceName(String serviceName);
+    Optional<ServiceModel> findByName(String name);
 }

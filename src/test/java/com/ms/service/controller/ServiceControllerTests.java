@@ -40,9 +40,9 @@ public class ServiceControllerTests extends ServiceApplicationTests {
 
     @Test
     @Order(1)
-    public void testCreateService() throws Exception{
+    public void testCreate() throws Exception{
         log.info("testCreateService");
-        ServiceDTO serviceDTO = new ServiceDTO(id, "empresa1", "empresa1@email.com", false, "descrição empresa1 aqui...", new BigDecimal(2.1), 1, 1, null, null, null);
+        ServiceDTO serviceDTO = new ServiceDTO(id, "empresa1", "empresa1@email.com", false, "descrição empresa1 aqui...", new BigDecimal(2.1), 1, 1, null, null, "sim");
         this.mockMvc.perform(MockMvcRequestBuilders
                 .post("/api/services")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -55,7 +55,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
 
     @Test
     @Order(2)
-    public void testFindAllServices() throws Exception{
+    public void testFindAll() throws Exception{
         log.info("testFindAllServices");
         this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services"))
                 .andDo(MockMvcResultHandlers.print())
@@ -67,7 +67,7 @@ public class ServiceControllerTests extends ServiceApplicationTests {
     @Order(3)
     public void testFindById() throws Exception{
         log.info("testFindById");
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getServiceId/" + id))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getId/" + id))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
@@ -76,9 +76,9 @@ public class ServiceControllerTests extends ServiceApplicationTests {
 
     @Test
     @Order(4)
-    public void testFindByServiceName() throws Exception{
+    public void testFindByName() throws Exception{
         log.info("testFindByServiceName");
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getServiceName/" + name))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/api/services/getName/" + name))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").isNotEmpty())
@@ -87,11 +87,10 @@ public class ServiceControllerTests extends ServiceApplicationTests {
 
     @Test
     @Order(5)
-    public void testUpdateService() throws Exception{
+    public void testUpdate() throws Exception{
         log.info("testUpdateService");
         this.mockMvc.perform(MockMvcRequestBuilders.put("/api/services/" + id)
-                // CONSTRUTOR DE SERVICEDTO = id, nome, email, status, descricao, preco, tempo de execução, prazo
-                .content(asJsonString(new ServiceDTO(id, "telecom2", "empresa2@email.com", true, "descrição aqui...",  new BigDecimal(1.2), 1, 1, null, null, null)))
+                .content(asJsonString(new ServiceDTO(id, "telecom2", "empresa2@email.com", true, "descrição aqui...",  new BigDecimal(1.2), 1, 1, null, null, "null")))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -100,9 +99,9 @@ public class ServiceControllerTests extends ServiceApplicationTests {
 
     @Test
     @Order(6)
-    public void testDeleteService() throws Exception{
+    public void testDelete() throws Exception{
         log.info("testDeleteService");
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/clients/" + id)
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/services/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
