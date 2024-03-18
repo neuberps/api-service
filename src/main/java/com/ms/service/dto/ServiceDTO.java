@@ -18,12 +18,14 @@ import java.math.BigDecimal;
 public class ServiceDTO implements Serializable {
 
     private String id;
+
     @NotBlank
     private String name;
 
     @NotBlank
     @Email
     private String email;
+
     private boolean status;
     private String description;
     private BigDecimal price;

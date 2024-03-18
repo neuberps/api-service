@@ -58,7 +58,6 @@ public class ServiceController {
         }
     }
 
-    // testFindByName(),
     @GetMapping(value = "/getName/{name}")
     public ResponseEntity<ServiceDTO> findByName(@PathVariable String name){
         try {
@@ -73,10 +72,9 @@ public class ServiceController {
         }
     }
 
-    // testUpdateService(),
     @Transactional
     @PutMapping(value = "/{id}")
-    public ResponseEntity<ServiceDTO> update(@PathVariable String id, @Valid @RequestBody ServiceDTO serviceDTO){
+    public ResponseEntity<ServiceDTO> update(@PathVariable String id, @RequestBody @Valid ServiceDTO serviceDTO){
         try{
             ServiceDTO updatedService = serviceServices.update(id, serviceDTO);
             return ResponseEntity.ok(updatedService);
@@ -85,7 +83,6 @@ public class ServiceController {
         }
     }
 
-    // testDeleteService()
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id){
         try {
