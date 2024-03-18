@@ -4,11 +4,9 @@ import com.ms.service.dto.ServiceDTO;
 import com.ms.service.exceptions.ServiceException;
 import com.ms.service.service.ServiceServices;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +35,6 @@ public class ServiceController {
         }
     }
 
-    @Transactional
     @PostMapping
     public ResponseEntity<ServiceDTO> create(@RequestBody @Valid ServiceDTO serviceDTO){
         try {
@@ -72,7 +69,6 @@ public class ServiceController {
         }
     }
 
-    @Transactional
     @PutMapping(value = "/{id}")
     public ResponseEntity<ServiceDTO> update(@PathVariable String id, @RequestBody @Valid ServiceDTO serviceDTO){
         try{

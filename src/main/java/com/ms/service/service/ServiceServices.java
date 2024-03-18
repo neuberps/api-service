@@ -7,6 +7,7 @@ import com.ms.service.exceptions.ServiceException;
 import com.ms.service.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +26,7 @@ public class ServiceServices {
         return list.stream().map(ServiceDTO::new).toList();
     }
 
+    @Transactional
     public ServiceDTO create(ServiceDTO serviceDTO) throws ServiceException {
         ServiceModel serviceModel = new ServiceModel(serviceDTO);
         serviceModel.setRegistryUser(serviceDTO.getRegistryUser());
@@ -45,6 +47,7 @@ public class ServiceServices {
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with NAME: " + name));
     }
 
+    @Transactional
     public ServiceDTO update(String id, ServiceDTO serviceDTO) throws ServiceException {
         Optional<ServiceModel> optionalServiceModel = serviceRepository.findById(id);
         if (optionalServiceModel.isPresent()){

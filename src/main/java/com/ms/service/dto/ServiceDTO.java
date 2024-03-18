@@ -1,6 +1,5 @@
 package com.ms.service.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ms.service.model.ServiceModel;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
