@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/services")
 public class ServiceController {
@@ -60,6 +61,20 @@ public class ServiceController {
         try {
             ServiceDTO serviceDTO = serviceServices.findByName(name);
             if (serviceDTO != null) {
+                return ResponseEntity.ok(serviceDTO);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (ServiceException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping(value = "/getCategory/{category}")
+    public ResponseEntity<ServiceDTO> findByCategory(@PathVariable String category){
+        try {
+            ServiceDTO serviceDTO = serviceServices.findByCategory(category);
+            if(serviceDTO != null){
                 return ResponseEntity.ok(serviceDTO);
             } else {
                 return ResponseEntity.notFound().build();

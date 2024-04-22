@@ -21,6 +21,7 @@ public class ServiceModel implements Serializable {
     private String id;
     private String name;
     private String email;
+    private String category;
     private boolean status;
     private String description;
     private BigDecimal price;
