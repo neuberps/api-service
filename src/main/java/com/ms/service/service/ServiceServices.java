@@ -47,6 +47,12 @@ public class ServiceServices {
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with NAME: " + name));
     }
 
+    public ServiceDTO findByCategory(String category) throws ServiceException {
+        return serviceRepository.findByCategory(category)
+                .map(ServiceDTO::new)
+                .orElseThrow(() -> new ServiceNotFoundException("Service not found with CATEGORY: " + category));
+    }
+
     @Transactional
     public ServiceDTO update(String id, ServiceDTO serviceDTO) throws ServiceException {
         Optional<ServiceModel> optionalServiceModel = serviceRepository.findById(id);

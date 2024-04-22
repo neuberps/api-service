@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface ServiceRepository extends MongoRepository<ServiceModel, String> {
     Optional<ServiceModel> findByName(String name);
+
+    Optional<ServiceModel> findByCategory(String category);
 }

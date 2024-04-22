@@ -24,7 +24,7 @@ public class ServiceDTO implements Serializable {
     @NotBlank
     @Email
     private String email;
-
+    private String category;
     private boolean status;
     private String description;
     private BigDecimal price;
