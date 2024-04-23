@@ -29,6 +29,7 @@ public class ServiceModel implements Serializable {
     private int term;
     private String created;
     private String updated;
+    private String image;
     private String registryUser;
 
     public ServiceModel (ServiceDTO serviceDTO){
