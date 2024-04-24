@@ -71,13 +71,13 @@ public class ServiceController {
     }
 
     @GetMapping(value = "/getCategory/{category}")
-    public ResponseEntity<ServiceDTO> findByCategory(@PathVariable String category){
+    public ResponseEntity<List<ServiceDTO>> findByCategory(@PathVariable String category){
         try {
-            ServiceDTO serviceDTO = serviceServices.findByCategory(category);
-            if(serviceDTO != null){
-                return ResponseEntity.ok(serviceDTO);
-            } else {
+            List<ServiceDTO> serviceDTO = serviceServices.findByCategory(category);
+            if(serviceDTO.isEmpty()){
                 return ResponseEntity.notFound().build();
+            } else {
+                return ResponseEntity.ok(serviceDTO);
             }
         } catch (ServiceException e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
