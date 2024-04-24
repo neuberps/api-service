@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.time.LocalDateTime;
+import java.util.stream.Collectors;
 
 @Service
 public class ServiceServices {
@@ -47,10 +48,14 @@ public class ServiceServices {
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with NAME: " + name));
     }
 
-    public ServiceDTO findByCategory(String category) throws ServiceException {
-        return serviceRepository.findByCategory(category)
-                .map(ServiceDTO::new)
-                .orElseThrow(() -> new ServiceNotFoundException("Service not found with CATEGORY: " + category));
+    public List<ServiceDTO> findByCategory(String category) throws ServiceException {
+        List<ServiceDTO> serviceDTOList = serviceRepository.findByCategory(category)
+                .stream().map(ServiceDTO::new)
+                .collect(Collectors.toList());
+        if (serviceDTOList.isEmpty()){
+            throw new ServiceNotFoundException("No services found with CATEGORY" + category);
+        }
+        return serviceDTOList;
     }
 
     @Transactional
