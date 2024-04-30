@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class ServiceServices {
+
     @Autowired
     ServiceRepository serviceRepository;
 
@@ -48,12 +49,12 @@ public class ServiceServices {
                 .orElseThrow(() -> new ServiceNotFoundException("Service not found with NAME: " + name));
     }
 
-    public List<ServiceDTO> findByCategory(String category) throws ServiceException {
-        List<ServiceDTO> serviceDTOList = serviceRepository.findByCategory(category)
+    public List<ServiceDTO> findByIdCategory(String idCategory) throws ServiceException {
+        List<ServiceDTO> serviceDTOList = serviceRepository.findByIdCategory(idCategory)
                 .stream().map(ServiceDTO::new)
                 .collect(Collectors.toList());
         if (serviceDTOList.isEmpty()){
-            throw new ServiceNotFoundException("No services found with CATEGORY" + category);
+            throw new ServiceNotFoundException("No services found with CATEGORY" + idCategory);
         }
         return serviceDTOList;
     }
@@ -66,6 +67,7 @@ public class ServiceServices {
 
             serviceModel.setName(serviceDTO.getName());
             serviceModel.setEmail(serviceDTO.getEmail());
+            serviceModel.setIdCategory((serviceDTO.getIdCategory()));
             serviceModel.setStatus(serviceDTO.isStatus());
             serviceModel.setDescription(serviceDTO.getDescription());
             serviceModel.setPrice(serviceDTO.getPrice());

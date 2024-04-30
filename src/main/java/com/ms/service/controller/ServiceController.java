@@ -70,10 +70,10 @@ public class ServiceController {
         }
     }
 
-    @GetMapping(value = "/getCategory/{category}")
-    public ResponseEntity<List<ServiceDTO>> findByCategory(@PathVariable String category){
+    @GetMapping(value = "/getIdCategory/{idCategory}")
+    public ResponseEntity<List<ServiceDTO>> findByIdCategory(@PathVariable String idCategory){
         try {
-            List<ServiceDTO> serviceDTO = serviceServices.findByCategory(category);
+            List<ServiceDTO> serviceDTO = serviceServices.findByIdCategory(idCategory);
             if(serviceDTO.isEmpty()){
                 return ResponseEntity.notFound().build();
             } else {
