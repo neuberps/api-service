@@ -22,9 +22,6 @@ public class ServiceServices {
 
     public List<ServiceDTO> findAll() throws ServiceException {
         List<ServiceModel> list = serviceRepository.findAll();
-        if(list.isEmpty()){
-            throw new ServiceNotFoundException("Services not found");
-        }
         return list.stream().map(ServiceDTO::new).toList();
     }
 
@@ -53,9 +50,6 @@ public class ServiceServices {
         List<ServiceDTO> serviceDTOList = serviceRepository.findByIdCategory(idCategory)
                 .stream().map(ServiceDTO::new)
                 .collect(Collectors.toList());
-        if (serviceDTOList.isEmpty()){
-            throw new ServiceNotFoundException("No services found with CATEGORY" + idCategory);
-        }
         return serviceDTOList;
     }
 
